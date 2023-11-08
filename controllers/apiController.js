@@ -1,30 +1,36 @@
-const {Remedies} = require('../models/pharmacy')
+const {Prisoners} = require('../models/prison')
 
 class ApiController {
-    async getApi (req, res)  {
-        const list = await Remedies.find(); //traer todo lo que tiene Remedies
+    async getPrisoners (req, res)  {
+        const list = await Prisoners.find(); //traer todo lo que tiene Prisioners
+
         res.status(200).json(list) //guarda el resultado y lo muestra
     }
 
-    async postApi (req, res)  {
+    async postPrisoners (req, res)  {
         try {
-            const newRemedy = new Remedies(req.body)
-            await newRemedy.save()
-            res.status(201).json(newRemedy) 
+            const newPrisioner = new Prisoners(req.body)
+            await newPrisioner.save()
+            res.status(201).json(newPrisioner) 
+
         } catch (error) {
             res.status(400).json(error)
         }
     }
 
-    async putApi (req, res)  {
-        try {
-            
-        } catch () {
-            
-        }
+    async putPrisoners (req, res)  {
+        const {id} = req.params;
+
+        const {nroPreso, condena, delito} = req.body;
+
+        const prisionero = await Prisoner.findByIdAndUpdate(id, {$set:{nroPreso, condena, delito}})
+
+        res.json({
+            msg:"Prisionero actualizado"
+        })
     }
 
-    async deleteApi (req, res)  {
+    async deletePrisoners (req, res)  {
        
     }
 }

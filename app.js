@@ -14,14 +14,9 @@ app.use(cors())
 const {connect} = require('./db/connect')
 
 
-const usersRouter = require('./routers/users')
-const mathsRouter = require('./routers/maths')
-const listRouter = require('./routers/list')
 const apiRouter = require('./routers/api')
 
-app.use('/users', usersRouter) //no funciona //funciona
-app.use('/maths', mathsRouter) //no funciona
-app.use('/list', listRouter) //no funciona
+
 app.use('/api', apiRouter) //funciona
 
 connect()
