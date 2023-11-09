@@ -9,9 +9,9 @@ class ApiController {
 
     async postPrisoners (req, res)  {
         try {
-            const newPrisioner = new Prisoners(req.body)
-            await newPrisioner.save()
-            res.status(201).json(newPrisioner) 
+            const newPrisoner = new Prisoners(req.body)
+            await newPrisoner.save()
+            res.status(201).json(newPrisoner) 
 
         } catch (error) {
             res.status(400).json(error)
@@ -31,7 +31,13 @@ class ApiController {
     }
 
     async deletePrisoners (req, res)  {
-       
+        const {id} = req.params;
+
+        await Prisoner.findByIdAndUpdate(id)
+ 
+         res.json({
+             msg:"Prisionero eliminado"
+         })
     }
 }
 

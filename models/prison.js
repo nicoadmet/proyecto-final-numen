@@ -23,5 +23,5 @@ const schema = new Schema({
     }
 })
 
-const Prisioners = model('Prisioner', schema);
-module.exports = {Prisioners}
+const Prisoners = model('Prisoner', schema);
+module.exports = {Prisoners}
