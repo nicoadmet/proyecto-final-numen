@@ -23,7 +23,7 @@ class ApiController {
 
         const {nroPreso, condena, delito} = req.body;
 
-        const prisionero = await Prisoner.findByIdAndUpdate(id, {$set:{nroPreso, condena, delito}})
+        const prisionero = await Prisoners.findByIdAndUpdate(id, {$set:{nroPreso, condena, delito}})
 
         res.json({
             msg:"Prisionero actualizado"
@@ -33,7 +33,7 @@ class ApiController {
     async deletePrisoners (req, res)  {
         const {id} = req.params;
 
-        await Prisoner.findByIdAndUpdate(id)
+        await Prisoners.findByIdAndUpdate(id)
  
          res.json({
              msg:"Prisionero eliminado"
