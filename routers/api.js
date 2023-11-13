@@ -15,11 +15,17 @@ router.post('/crear',
 ],apiController.postPrisoners)
 
 router.put('/:id', [
-    check("id", "No es un ID válido").isMongoId(),
-    validarCampos
-],apiController.putPrisoners)
 
-router.delete('/:id', apiController.deletePrisoners)
+    check("id", "No es un ID válido").isMongoId(), validarCampos],
+    apiController.putPrisoners
+
+    )
+
+router.delete('/:id',  [
+
+    check("id", "No es un ID válido").isMongoId(), validarCampos],
+    apiController.deletePrisoners
+    )
 
 
 
