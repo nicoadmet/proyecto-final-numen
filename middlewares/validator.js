@@ -1,5 +1,5 @@
 const {validationResult} = require('express-validator');
-const { Prisoners } = require('../models/prison');
+
 
 const validarCampos = (res, req, next) =>{
     const errors = validationResult(req);
@@ -11,14 +11,8 @@ const validarCampos = (res, req, next) =>{
     
 };
 
-const presoExiste = async(nroPreso) => {
-    const preso = await Prisoners.findOne({nroPreso});
-
-    if(preso){
-        throw new Error("El preso ya esta registrado")
-    }
-}
 
 
 
-module.exports = { validarCampos, presoExiste }
+
+module.exports = { validarCampos }

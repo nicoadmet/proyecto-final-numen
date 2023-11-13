@@ -1,8 +1,8 @@
 const express = require('express');
-const router = express.Router(); //segmentar una ruta
+const router = express.Router(); 
 const apiController = require('../controllers/apiController');
 const {check} = require('express-validator');
-const { presoExiste, validarCampos } = require('../middlewares/validator');
+const { validarCampos } = require('../middlewares/validator');
 
 
 router.get('/', apiController.getPrisoners)
@@ -10,15 +10,14 @@ router.get('/', apiController.getPrisoners)
 router.post('/crear',
 [
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check("nroPreso", "El número de preso debe tener mínimo 4 caracteres ").isLength({
-        min:4,
-    }),
-    check("nroPreso").custom(presoExiste),
     validarCampos,
 
 ],apiController.postPrisoners)
 
-router.put('/:id', apiController.putPrisoners)
+router.put('/:id', [
+    check("id", "No es un ID válido").isMongoId(),
+    validarCampos
+],apiController.putPrisoners)
 
 router.delete('/:id', apiController.deletePrisoners)
 
